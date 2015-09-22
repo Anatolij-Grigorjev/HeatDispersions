@@ -1,3 +1,5 @@
+import model.Record
+
 /**
  * Created by anatolij on 22/09/15.
  */
@@ -68,11 +70,11 @@ class DataImport {
         (78 + rnd.nextInt(55)).times {
             def size = names.size()
             def name = names[rnd.nextInt((int)(size / 2) * 2)] + ' ' + names[rnd.nextInt(size)]
-
-            String line = (it
+            def reading = Math.abs(rnd.nextDouble() * 157)
+            String line = ((it + 1)
             + '#' + name
-            + '#' + Math.abs(rnd.nextDouble() * 157)
-            + '#' + Math.abs(rnd.nextDouble() * 214)
+            + '#' + reading
+            + '#' + (reading + Math.abs(rnd.nextDouble() * 34))
             )
             list << line
         }
@@ -80,5 +82,21 @@ class DataImport {
         new File("data.dat").withPrintWriter { pw -> list.each {line -> pw.println(line)} }
     }
 
+    List<Record> importData(String path) {
+        def records = [] as List<Record>
+        new File(path).eachLine("UTF-8") { line ->
+            String[] splits = line.split('#')
 
+            def record = new Record(id: Long.parseLong(splits[0])
+                    , name: splits[1]
+                    , prevReading: Double.parseDouble(splits[2])
+                    , curReading: Double.parseDouble(splits[3]))
+            record.with {
+                difference = Math.abs(curReading - prevReading)
+            }
+            records << record
+        }
+
+        records
+    }
 }

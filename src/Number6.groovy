@@ -4,4 +4,5 @@
 
 
 def imprt = new DataImport(new Random())
-//imprt.createData()
+imprt.createData()
+println "Imported some data: \n ${imprt.importData("data.dat")}"
