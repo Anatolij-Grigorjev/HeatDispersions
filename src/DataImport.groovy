@@ -75,6 +75,7 @@ class DataImport {
             + '#' + name
             + '#' + reading
             + '#' + (reading + Math.abs(rnd.nextDouble() * 34))
+                    + '#' + Math.abs(rnd.nextDouble() * 88)
             )
             list << line
         }
@@ -90,7 +91,8 @@ class DataImport {
             def record = new Record(id: Long.parseLong(splits[0])
                     , name: splits[1]
                     , prevReading: Double.parseDouble(splits[2])
-                    , curReading: Double.parseDouble(splits[3]))
+                    , curReading: Double.parseDouble(splits[3])
+                    , areaOwned: Double.parseDouble(splits[4]))
             record.with {
                 difference = Math.abs(curReading - prevReading)
             }

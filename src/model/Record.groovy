@@ -10,7 +10,7 @@ class Record {
     Double prevReading
     Double curReading
     Double difference
-
+    Double areaOwned
 
     @Override
     public String toString() {
