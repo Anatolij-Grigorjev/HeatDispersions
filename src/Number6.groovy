@@ -3,4 +3,5 @@
  */
 
 
-
+def imprt = new DataImport(new Random())
+//imprt.createData()
