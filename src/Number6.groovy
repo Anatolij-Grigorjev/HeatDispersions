@@ -1,12 +1,16 @@
+import utils.Const
+import utils.DataImport
+
 /**
  * Created by anatolij on 22/09/15.
  */
 
-def rnd = new Random()
-def imprt = new DataImport(rnd)
+def imprt = new DataImport(Const.rnd)
 imprt.createData()
-println "Imported some data: \n ${imprt.importData("data.dat")}"
+def data = imprt.importData("data.dat")
+println "Imported some data: \n ${data}"
 
-/* total amount of heat to enter the building */
-Double QPS = rnd.nextDouble() * 891
+println "\n\n\nDOING METHOD A\n\n\n"
+
+
 
